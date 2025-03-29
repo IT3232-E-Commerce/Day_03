@@ -1,0 +1,7 @@
+package lk.ac.vau.fas.ict.controller;
+
+@GetMapping
+
+public class AppController {
+
+}
