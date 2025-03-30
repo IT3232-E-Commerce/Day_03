@@ -1,6 +1,10 @@
 package lk.ac.vau.fas.ict.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,17 +13,40 @@ import lk.ac.vau.fas.ict.model.Student;
 @RestController
 @RequestMapping("/app")
 public class AppController {
-	Student Bob = new Student("2021ICT01", "Bob Marely", 23, "IT", 3.2);
-	Student James = new Student("2021ICT02", "James Bond", 24, "IT", 3.3);
-	Student Donald = new Student("2021ICT03", "Donald Trump", 23, "IT", 2.8);
+	private List<Student> students;
 	
-    @GetMapping("/home")
+	public AppController(){
+		students = new ArrayList<>();
+		
+		students.add(new Student("2021ICT01", "Alice Wonderland", 22, "IT", 3.5));
+        students.add(new Student("2021ICT02", "Charlie Chaplin", 24, "IT", 3.1));
+        students.add(new Student("2021ICT03", "David Beckham", 23, "IT", 3.4));
+        students.add(new Student("2021ICT04", "Emma Watson", 22, "IT", 3.6));
+        students.add(new Student("2021ICT05", "Frank Sinatra", 25, "IT", 3.0));
+	}
+	
+	@GetMapping("/home")
     public String homeMessage() {
         return "Welcome to Student Managemant System!";
     }
     
     @GetMapping("/student")
     public Student getStudent() {
-        return Bob;
+        return students.get(0);
     }
+    
+    @GetMapping("/students")
+    public List<Student> getStudents() {    	
+    	return students;
+    }
+    
+    @GetMapping("/students/{id}")
+    public Student findStudents(@PathVariable("id") String regNo) {
+    	for (Student student : students) {
+    		if (student.getRegNo().equals(regNo)) {
+    			return student;
+    		}
+    	}
+    	return null;
+    }  
 }
