@@ -8,13 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/app")
 public class AppController {
 
-    @GetMapping("/msg1")
-    public String myMessage1() {
-        return "Hello World!";
+    @GetMapping("/home")
+    public String homeMessage() {
+        return "Welcome to Student Managemant System!";
     }
-    
-    @GetMapping("/msg2")
-    public String myMessage2() {
-        return "Learn SpringBoot!";
-    }    
 }
