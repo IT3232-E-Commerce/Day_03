@@ -59,20 +59,4 @@ public class AppController {
     	}
     	return filteredStudents;
     }  
-    
-    @GetMapping("/students/sort")
-    public List<Student> getSortedStudents() {
-    	List<Student> sortedStudents = new ArrayList<>(students);
-    	
-    	for (int i = 0; i < students.size(); i++) {
-    		for (int j = i + 1; j < students.size(); j++) {
-    			if(students.get(i).getGpa() < students.get(j).getGpa()) {
-    				Student tempStudent = sortedStudents.get(i);
-        			sortedStudents.set(i, sortedStudents.get(j));
-        			sortedStudents.set(j, tempStudent);
-    			}
-    		}
-    	}
-    	return sortedStudents;
-    }
 }
