@@ -13,9 +13,11 @@ import lk.ac.vau.fas.ict.model.Student;
 @RestController
 @RequestMapping("/app")
 public class AppController {
-	List<Student> students = new ArrayList<>();
-		
+	private List<Student> students;
+	
 	public AppController(){
+		students = new ArrayList<>();
+		
 		students.add(new Student("2021ICT01", "Alice Wonderland", 22, "IT", 3.5));
         students.add(new Student("2021ICT02", "Charlie Chaplin", 24, "IT", 3.1));
         students.add(new Student("2021ICT03", "David Beckham", 23, "IT", 3.4));
@@ -46,17 +48,5 @@ public class AppController {
     		}
     	}
     	return null;
-    } 
-    
-    @GetMapping("/students/age/{min}/{max}")
-    public List<Student> findAgeStudents(@PathVariable int min, @PathVariable int max) {
-    	List<Student> filteredStudents = new ArrayList<>();
-    	
-    	for (Student student : students) {
-    		if (student.getAge() > min && student.getAge() < max) {
-    			filteredStudents.add(student);
-    		}
-    	}
-    	return filteredStudents;
     }  
 }
