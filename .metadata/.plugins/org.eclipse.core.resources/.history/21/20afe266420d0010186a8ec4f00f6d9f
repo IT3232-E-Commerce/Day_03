@@ -100,11 +100,14 @@ public class AppController {
     } 
     
     @PutMapping("/students/{id}")
-    public String deleteStudent(@PathVariable("id") String regNo) {
+    public String deleteStudent(@PathVariable("id") String regNo, @RequestBody Student updatedStudent) {
         for (Student student : students) {
         	if (student.getRegNo().equals(regNo)) {
-        		students.remove(student);
-        		return "Student deleted successfully!";
+        		student.setName(updatedStudent.getName());
+        		student.setAge(updatedStudent.getAge());
+        		student.setCourse(updatedStudent.getCourse());
+        		student.setGpa(updatedStudent.getGpa());
+        		return "Student updated successfully!";
         	}
         }
         return "Student not found!";

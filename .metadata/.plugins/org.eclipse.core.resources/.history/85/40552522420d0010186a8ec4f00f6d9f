@@ -52,7 +52,7 @@ public class AppController {
     } 
     
     @GetMapping("/students/age/{min}/{max}")
-    public List<Student> findStudentsByAge(@PathVariable int min, @PathVariable int max) {
+    public List<Student> findAgeStudents(@PathVariable int min, @PathVariable int max) {
     	List<Student> filteredStudents = new ArrayList<>();
     	
     	for (Student student : students) {
@@ -86,7 +86,7 @@ public class AppController {
     }   
     
     @PutMapping("/students/{id}")
-    public String updateStudent(@PathVariable("id") String regNo, @RequestBody Student updatedStudent) {
+    public String updateStudents(@PathVariable("id") String regNo, @RequestBody Student updatedStudent) {
         for (Student student : students) {
         	if (student.getRegNo().equals(regNo)) {
         		student.setName(updatedStudent.getName());
@@ -98,15 +98,4 @@ public class AppController {
         }
         return "Student not found!";
     } 
-    
-    @PutMapping("/students/{id}")
-    public String deleteStudent(@PathVariable("id") String regNo) {
-        for (Student student : students) {
-        	if (student.getRegNo().equals(regNo)) {
-        		students.remove(student);
-        		return "Student deleted successfully!";
-        	}
-        }
-        return "Student not found!";
-    }
 }
